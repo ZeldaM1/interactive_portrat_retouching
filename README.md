@@ -41,7 +41,9 @@ cd tool
 python demo.py 
 ```
 If everythings works, you will find an interactive GUI like:
-<img src="materials/demo_p/schoolgirls_p.gif" width="320"/>
+
+<img src="materials/pipeline.jpg" height="260px"/> 
+
 You can also retouch your own portrait. All you need to do is to change the input and output paths, have fun!
 
 ## Todo list
