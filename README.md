@@ -5,7 +5,7 @@ IEEE Transactions on Multimedia
 
 [[arXiv]]( ) [[PDF]]( ) [[Project Page]]( ) [[Papers with Code]]( )
  
-# Code comming soon
+#  Comming soon
  
 ## Overview
 <img src="fig/overview.png" height="260px"/> 
@@ -43,7 +43,7 @@ python demo.py
 ```
 If everythings works, you will find an interactive GUI like:
 
-<img src="materials/GUI.png" height="260px"/> 
+<img src="fig/GUI.png" height="260px"/> 
 
 You can also retouch your own portrait. All you need to do is to change the input and output paths, have fun!
 
