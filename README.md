@@ -1,5 +1,5 @@
 # Region-Aware Portrait Retouching with Sparse Interactive Guidance
-[Huimin Zeng](https://hkchengrex.github.io/), Jie Huang, Jiacheng Li, Zhiwei Xiong
+[Huimin Zeng](https://ZeldaM1.github.io/), Jie Huang, Jiacheng Li, Zhiwei Xiong
 
 IEEE Transactions on Multimedia
 
