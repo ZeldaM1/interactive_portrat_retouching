@@ -5,9 +5,10 @@ IEEE Transactions on Multimedia
 
 [[arXiv]]( ) [[PDF]]( ) [[Project Page]]( ) [[Papers with Code]]( )
  
+# Code comming soon
  
-# Overview
-<img src="materials/pipeline.jpg" height="260px"/> 
+## Overview
+<img src="fig/overview.png" height="260px"/> 
  
 
 ## Prerequisites
@@ -42,7 +43,7 @@ python demo.py
 ```
 If everythings works, you will find an interactive GUI like:
 
-<img src="materials/pipeline.jpg" height="260px"/> 
+<img src="materials/GUI.png" height="260px"/> 
 
 You can also retouch your own portrait. All you need to do is to change the input and output paths, have fun!
 
