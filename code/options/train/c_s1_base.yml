@@ -1,0 +1,91 @@
+#### general settings
+name: c_s1_base
+use_tb_logger: true
+model: dual_auto
+distortion: sr
+scale: 1
+gpu_ids: [3]
+
+#### datasets
+datasets:
+  train:
+    name: PPR10K_train #8875
+    mode: PPR_enhance
+    dataroot_GT: ./dataset/train/target_c
+    dataroot_LQ: ./dataset/train/source
+    dataroot_MASK: ./dataset/train/masks_360p
+    use_shuffle: true
+    n_workers: 16  
+    batch_size: 10
+    color: RGB
+    GT_size: 256
+
+  val:
+    name: PPR10K_val #2286
+    mode: PPR_enhance
+    dataroot_GT: ./dataset/PPR_LR_mini/targetc
+    dataroot_LQ: ./dataset/PPR_LR_mini/source
+    dataroot_MASK: ./dataset/PPR_LR_mini/mask 
+ 
+
+
+ 
+#### network structures
+network_G:
+  which_model_G: Auto_base_net
+  in_nc: 3
+  out_nc: 3
+  base_nf: 64
+  layer_size: 6
+  mask_constrain: True
+  use_psp: true
+  use_HIN: True
+  norm_type: instance
+  final_weight: true
+  spp_loc: center  # | center
+  spp_type: multi # | single | multi
+  up_sample: trans
+  vgg_version: false
+  return_x16: true
+  with_skip: false
+  atten_skip: false
+
+ 
+
+#### path
+path:
+  root: ./interactive_portrat_retouching/
+  pretrain_model_G: ~
+  strict_load: true
+  resume_state: ~
+
+#### training settings: learning rate scheme, loss
+train:
+  pretrain: ~
+  use_mask: true
+  lr_G: !!float 1e-4
+  lr_scheme: MultiStepLR # MultiStepLR | CosineAnnealingLR_Restart
+  beta1: 0.9
+  beta2: 0.99
+  niter: 300000
+  warmup_iter: -1  # no warm up
+  lr_steps: [100000, 200000, 300000, 400000, 500000]
+  lr_gamma: 0.5
+   
+
+  pixel_criterion: l1
+  pixel_weight: 1.0
+  mask_criterion: bce
+  mask_weight: 1
+
+  manual_seed: 10
+  val_freq: !!float 5e3  
+  
+   
+
+#### logger
+logger:
+  print_freq: 100
+  save_checkpoint_freq: !!float 5e3  
+
+ 

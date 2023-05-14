@@ -1,0 +1,49 @@
+#### general settings
+name: c_s3_joint
+suffix: ~  # add suffix to saved images
+model: dual_inter_stage
+distortion: sr
+scale: 1
+gpu_ids: [0]
+
+datasets:
+  val:
+    name: c_s3_joint_inter  
+    mode: PPR_ins_inter
+    max_num_points: 5
+    dataroot_GT: ../dataset/val/target_c
+    dataroot_LQ: ../dataset/val/source
+    dataroot_MASK: ../dataset/val/masks_360p_val
+    json: ../dataset/ppr_val_ins.json
+    inst_path: ../dataset/val/val_masks_ins_360p
+ 
+  
+network_G:
+  which_model_G: Auto_inter_net
+  in_nc: 3
+  out_nc: 3
+  base_nf: 64
+  layer_size: 6
+  mask_constrain: True
+  use_psp: true
+  use_HIN: True
+  norm_type: instance
+  final_weight: true
+  spp_loc: center  # | center
+  spp_type: multi # | single | multi
+  up_sample: trans
+  vgg_version: false
+  return_x16: true
+  with_skip: false
+  atten_skip: false
+  norm_radius: 3  # ------------------- click options
+  use_disks: true 
+  click_only: true
+  match_kernel: 3
+  temperature: 1
+
+
+#### path
+path:
+  root: ../
+  pretrain_model_G: ../ckpt/c_ckpt.pth

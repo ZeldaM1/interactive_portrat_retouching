@@ -1,0 +1,106 @@
+#### general settings
+name: c_s3_joint 
+use_tb_logger: true
+model: dual_inter_stage
+distortion: sr
+scale: 1
+gpu_ids: [3]
+
+### datasets
+datasets:
+  train:
+    name: PPR10K_train #8875
+    mode: PPR_ins_inter
+    max_num_points: 5
+    dataroot_GT: ./dataset/train/target_c
+    dataroot_LQ: ./dataset/train/source
+    dataroot_MASK: ./dataset/train/masks_360p
+    json: ./ppr_train_ins.json
+    inst_path: ./dataset/train/masks_ins_360p
+
+
+    use_shuffle: true
+    n_workers: 16  
+    batch_size: 10
+    color: RGB
+    GT_size: 256
+
+
+  val:
+    name: PPR10K_val #2286
+    mode: PPR_ins_inter
+    max_num_points: 5
+    dataroot_GT: ./dataset/PPR_LR_mini/targetc
+    dataroot_LQ: ./dataset/PPR_LR_mini/source
+    dataroot_MASK: ./dataset/PPR_LR_mini/mask
+    json: ./ppr_mini_val_ins.json
+    inst_path: ./dataset/val/val_masks_ins_360p
+
+ 
+network_G:
+  which_model_G: Auto_inter_net
+  in_nc: 3
+  out_nc: 3
+  base_nf: 64
+  layer_size: 6
+  mask_constrain: True
+  use_psp: true
+  use_HIN: True
+  norm_type: instance
+  final_weight: true
+  spp_loc: center  # | center
+  spp_type: multi # | single | multi
+  up_sample: trans
+  vgg_version: false
+  return_x16: true
+  with_skip: false
+  atten_skip: false
+  norm_radius: 3  # ------------------- click options
+  use_disks: true 
+  click_only: true
+  match_kernel: 3
+  temperature: 1
+
+
+#### path
+path:
+  root: ./interactive_portrat_retouching/
+  pretrain_model_G: ~
+  strict_load: true
+  resume_state: ~
+  
+#### training settings: learning rate scheme, loss
+train:
+  pretrain: ./experiments/c_s2_inter/models/300000_G.pth
+  stage: s3
+  deco_freeze: false
+  use_mask: true
+  lr_G: !!float 1e-4
+  lr_scheme: MultiStepLR # MultiStepLR | CosineAnnealingLR_Restart
+  beta1: 0.9
+  beta2: 0.99
+  niter: 600000
+  warmup_iter: -1  # no warm up
+  lr_steps: [40000, 60000, 80000, 100000, 200000]
+  lr_gamma: 0.5
+  mix_iter: -1
+  ins_pos: 0.6         # less than this number, instance training round
+   
+
+  pixel_criterion: l1
+  pixel_weight: 1.0
+  mask_criterion: bce
+  mask_weight: 1
+  mask_pix_w_weight: 5
+
+  manual_seed: 10
+  val_freq: !!float 2e3  
+  
+   
+
+#### logger
+logger:
+  print_freq: 100
+  save_checkpoint_freq: !!float 2e3
+
+
