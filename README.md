@@ -8,7 +8,7 @@ IEEE Transactions on Multimedia
 #  Comming soon
  
 ## Overview
-<img src="fig/overview.png" height="260px"/> 
+<img src="fig/overview.png" height="350px"/> 
  
 
 ## Prerequisites
@@ -36,7 +36,7 @@ python demo.py  --checkpoint ckpt/c_ckpt.pth
 ```
 If everything works, you will find an interactive GUI like:
 
-<img src="fig/GUI.png" height="260px"/> 
+<img src="fig/GUI.png" height="400px"/> 
 
 You can also retouch your own portrait. All you need to do is to change the input and output paths, have fun!
 
