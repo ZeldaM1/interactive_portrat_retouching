@@ -1,17 +1,15 @@
 # Region-Aware Portrait Retouching with Sparse Interactive Guidance
 [Huimin Zeng](https://ZeldaM1.github.io/), [Jie Huang](https://kevinj-huang.github.io/), [Jiacheng Li](http://home.ustc.edu.cn/~jclee/), [Zhiwei Xiong](http://staff.ustc.edu.cn/~zwxiong/)
 
-IEEE Transactions on Multimedia
+IEEE Transactions on Multimedia 2023
 
 [[Paper]](https://ieeexplore.ieee.org/document/10081407) [[arXiv]](https://arxiv.org/abs/2304.04017) 
- 
-#  Comming soon
- 
-## Overview
+  
+## :bulb: Overview
 <img src="fig/overview.png" height="350px"/> 
  
 
-## Prerequisites
+## :exclamation: Prerequisites
 - Python 3.7
 - Pytorch 1.8.1
 
@@ -24,7 +22,7 @@ You can use our docker by running the following commands:
 docker pull registry.cn-hangzhou.aliyuncs.com/zenghuimin/zhm_docker:py37-torch18
 ```
 
-## Quick start
+## :raised_hands: Quick start
 You can try our Demo!
 1. Download the [pre-trained models](https://drive.google.com/drive/folders/1qvyTDmfIMClkOkzuWC00K5ceU6HOOg6z?usp=sharing). 
 2. Put the downloaded pre-trained models to `./ckpt`.
@@ -41,7 +39,7 @@ If everything works, you will find an interactive GUI like:
 You can also retouch your own portrait. All you need to do is to change the input and output paths, have fun!
 
  
-## Training
+## :point_down: Training
 First, please prepare the dataset for training.
 1. Please download [PPR10K dataset](https://github.com/csjliang/PPR10K) in the official link.
 2. Download the annotations for each instance [here](https://drive.google.com/drive/folders/1qvyTDmfIMClkOkzuWC00K5ceU6HOOg6z?usp=sharing).
@@ -80,14 +78,14 @@ Third, train the joint model.
 ```bash
 python  train_dual_branch.py  -opt_base   options/train/c_s1_base.yml   -opt options/train/c_s3_joint.yml
  ```
-## Testing
+## :point_down: Testing
 ```
 cd code
 python test.py  -opt /disk2/zenghm/CSRNet/codes_share_v1_inter/options/test/auto/c_s3_joint.yml  -model ./ckpt/c_ckpt.pth  --save_results # automatic retouching evaluation
 python test.py  -opt /disk2/zenghm/CSRNet/codes_share_v1_inter/options/test/inter/c_s3_joint.yml  -model ./ckpt/c_ckpt.pth  --save_results  # interactive retouching evaluation
 ```
-## Citation
-If our work inspires your research or some part of the codes are useful for your work, please cite our paper:
+## :thumbsup: Citation
+If our work inspires your research or some part of the codes are useful for your work, please star this repo and cite our paper:star::
 ```bibtex
 @ARTICLE{10081407,
   author={Zeng, Huimin and Huang, Jie and Li, Jiacheng and Xiong, Zhiwei},
@@ -100,9 +98,9 @@ If our work inspires your research or some part of the codes are useful for your
   doi={10.1109/TMM.2023.3262185}}
 ```
 
-## Contact
+## :email: Contact 
 If you have any questions, please contact us via 
 - zenghuimin@mail.ustc.edu.cn
 
-## Acknowledgement
+## :clap: Acknowledgement
 Some parts of this repo are based on [RITM](https://github.com/SamsungLabs/ritm_interactive_segmentation) and [CSRNet](https://github.com/hejingwenhejingwen/CSRNet).  
